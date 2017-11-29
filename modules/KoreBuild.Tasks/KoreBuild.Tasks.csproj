@@ -5,6 +5,10 @@
     <AssemblyName>Internal.AspNetCore.KoreBuild.Tasks</AssemblyName>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <SkipStrongNamesExe>$(NuGetPackageRoot)\microsoft.web.skipstrongnames\$(MicrosoftWebSkipStrongNamesPackageVersion)\tools\SkipStrongNames.exe</SkipStrongNamesExe>
+  </PropertyGroup>
+
   <ItemGroup>
     <Content Include="*.props" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="*.targets" CopyToPublishDirectory="PreserveNewest" />
@@ -12,6 +16,7 @@
     <Compile Include="..\..\shared\Utilities\MSBuildListSplitter.cs" />
     <Compile Include="..\..\tools\KoreBuildSettings.cs" />
     <Content Include="$(VSWhereDir)vswhere.exe" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="$(SkipStrongNamesExe)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +28,7 @@
     <PackageReference Include="NuGet.Build.Tasks" Version="$(Tooling_NuGetBuildTasksPackageVersion)" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" Version="$(Tooling_NewtonsoftJsonPackageVersion)" PrivateAssets="All" />
     <PackageReference Include="vswhere" Version="$(VSWherePackageVersion)" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Web.SkipStrongNames" Version="$(MicrosoftWebSkipStrongNamesPackageVersion)" />
   </ItemGroup>
 
 </Project>

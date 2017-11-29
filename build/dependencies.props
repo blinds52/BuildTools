@@ -41,5 +41,9 @@
     <NuGetInMSBuildVersion>$(Tooling_NuGetBuildTasksPackageVersion)</NuGetInMSBuildVersion>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <MicrosoftWebSkipStrongNamesPackageVersion>1.0.0</MicrosoftWebSkipStrongNamesPackageVersion>
+  </PropertyGroup>
+
   <Import Project="$(DotNetPackageVersionPropsPath)" Condition=" '$(DotNetPackageVersionPropsPath)' != '' " />
 </Project>

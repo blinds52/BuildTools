@@ -1,4 +1,9 @@
 <Project>
+  <PropertyGroup>
+    <SkipStrongNamesExe>$(NuGetPackageRoot)\microsoft.web.skipstrongnames\$(MicrosoftWebSkipStrongNamesPackageVersion)\tools\SkipStrongNames.exe</SkipStrongNamesExe>
+  </PropertyGroup>
+
+  <UsingTask TaskName="SkipStrongNames.CheckSkipStrongNamesStatus" AssemblyFile="$(SkipStrongNamesExe)" />
 
   <PropertyGroup>
     <PrepareDependsOn Condition=" '$(DisableDefaultTargets)' != 'true' ">GetToolsets;$(PrepareDependsOn)</PrepareDependsOn>
@@ -7,7 +12,31 @@
     <DisablePackageReferenceRestrictions Condition=" '$(DisablePackageReferenceRestrictions)' == '' ">false</DisablePackageReferenceRestrictions>
     <KoreBuildConfigFile Condition="'$(KoreBuildConfigFile)' == ''">$(RepositoryRoot)korebuild.json</KoreBuildConfigFile>
     <DependencyVersionsFile Condition="'$(DependencyVersionsFile)' == ''">$(RepositoryRoot)build\dependencies.props</DependencyVersionsFile>
-  </PropertyGroup>
+
+    </PropertyGroup>
+
+  <Target Name="EnableSkipStrongNames">
+    <Exec Command='"$(SkipStrongNamesExe)" -e "$(SkipStrongNamesXml)"' />
+    <CheckSkipStrongNamesStatus AssembliesFile="$(SkipStrongNamesXml)">
+      <Output TaskParameter="Status" PropertyName="Status" />
+    </CheckSkipStrongNamesStatus>
+    <Message Text="SkipStrongNames: $(Status)" Importance="High" />
+  </Target>
+
+  <Target Name="DisableSkipStrongNames">
+    <Exec Command='"$(SkipStrongNamesExe)" -d "$(SkipStrongNamesXml)"' />
+    <CheckSkipStrongNamesStatus AssembliesFile="$(SkipStrongNamesXml)">
+      <Output TaskParameter="Status" PropertyName="Status" />
+    </CheckSkipStrongNamesStatus>
+    <Message Text="SkipStrongNames: $(Status)" Importance="High" />
+  </Target>
+
+  <Target Name="CheckSkipStrongNames" DependsOnTargets="RestoreSkipStrongNames">
+    <CheckSkipStrongNamesStatus AssembliesFile="$(SkipStrongNamesXml)">
+      <Output TaskParameter="Status" PropertyName="Status" />
+    </CheckSkipStrongNamesStatus>
+    <Error Text="Unit tests will not run correctly unless SkipStrongNames is Enabled. Current status: $(Status). Run build.cmd EnableSkipStrongNames to fix this problem." Condition="'$(Status)' != 'Enabled'" />
+  </Target>
 
   <Target Name="InstallDotNet">
     <PropertyGroup>
