@@ -6,8 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <SkipStrongNamesDir>$(NuGetPackageRoot)\microsoft.web.skipstrongnames\$(MicrosoftWebSkipStrongNamesPackageVersion)\tools</SkipStrongNamesDir>
-    <SkipStrongNamesExe>$(SkipStrongNamesDir)\SkipStrongNames.exe</SkipStrongNamesExe>
+    <SkipStrongNamesExe>$(NuGetPackageRoot)\microsoft.web.skipstrongnames\$(MicrosoftWebSkipStrongNamesPackageVersion)\tools\SkipStrongNames.exe</SkipStrongNamesExe>
   </PropertyGroup>
 
   <ItemGroup>

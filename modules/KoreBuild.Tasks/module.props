@@ -1,8 +1,4 @@
 <Project>
-  <PropertyGroup>
-    <SkipStrongNamesExe>$(MSBuildThisFileDirectory)SkipStrongNames.exe</SkipStrongNamesExe>
-  </PropertyGroup>
-
   <UsingTask TaskName="KoreBuild.Tasks.CheckPackageReferences" AssemblyFile="$(MSBuildThisFileDirectory)Internal.AspNetCore.KoreBuild.Tasks.dll" />
   <UsingTask TaskName="KoreBuild.Tasks.DownloadNuGetPackages" AssemblyFile="$(MSBuildThisFileDirectory)Internal.AspNetCore.KoreBuild.Tasks.dll" />
   <UsingTask TaskName="KoreBuild.Tasks.FindVisualStudio" AssemblyFile="$(MSBuildThisFileDirectory)Internal.AspNetCore.KoreBuild.Tasks.dll" />
@@ -17,6 +13,8 @@
   <PropertyGroup>
     <DefaultDotNetAssetArch>$(KOREBUILD_DOTNET_ARCH)</DefaultDotNetAssetArch>
     <DefaultDotNetAssetArch Condition="'$(DefaultDotNetAssetArch)' == ''">x64</DefaultDotNetAssetArch>
+
+    <SkipStrongNamesExe>$(MSBuildThisFileDirectory)SkipStrongNames.exe</SkipStrongNamesExe>
   </PropertyGroup>
 
   <ItemDefinitionGroup>
