@@ -8,15 +8,11 @@
     <DependencyVersionsFile Condition="'$(DependencyVersionsFile)' == ''">$(RepositoryRoot)build\dependencies.props</DependencyVersionsFile>
   </PropertyGroup>
 
-  <Target Name="EnableSkipStrongNames" Inputs="$(SkipStrongNamesXml)">
-    <Error Text="The parameter 'SkipStrongNamesXml' was not set." Condition="'$(SkipStrongNamesXml)' == ''" />
-
+  <Target Name="EnableSkipStrongNames" Inputs="@(SkipStrongNamesXml)">
     <Exec Command='"$(SkipStrongNamesExe)" -e "$(SkipStrongNamesXml)"' />
   </Target>
 
-  <Target Name="DisableSkipStrongNames" Inputs="$(SkipStrongNamesXml)">
-    <Error Text="The parameter 'SkipStrongNamesXml' was not set." Condition="'$(SkipStrongNamesXml)' == ''" />
-
+  <Target Name="DisableSkipStrongNames" Inputs="@(SkipStrongNamesXml)">
     <Exec Command='"$(SkipStrongNamesExe)" -d "$(SkipStrongNamesXml)"' />
   </Target>
 

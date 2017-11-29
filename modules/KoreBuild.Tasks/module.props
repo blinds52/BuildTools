@@ -15,6 +15,7 @@
     <DefaultDotNetAssetArch Condition="'$(DefaultDotNetAssetArch)' == ''">x64</DefaultDotNetAssetArch>
 
     <SkipStrongNamesExe>$(MSBuildThisFileDirectory)SkipStrongNames.exe</SkipStrongNamesExe>
+    <SkipStrongNamesXml>$(MSBuildThisFileDirectory)SkipStrongNames.xml</SkipStrongNamesXml>
   </PropertyGroup>
 
   <ItemDefinitionGroup>

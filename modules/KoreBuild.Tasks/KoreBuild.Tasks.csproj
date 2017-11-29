@@ -17,6 +17,7 @@
     <Compile Include="..\..\tools\KoreBuildSettings.cs" />
     <Content Include="$(VSWhereDir)vswhere.exe" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="$(SkipStrongNamesExe)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="$(MSBuildThisFileDirectory)SkipStrongNames.xml" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>
